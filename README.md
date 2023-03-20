@@ -4,6 +4,8 @@
 **PARTICIPANTES :**
 João Miguel Rosa Neto : G522CA7 /
 Guilherme De Mazzi : G423666 /
+Victor Hugo Bernardo Dias : G4575D0 /
+Guilherme Lizardo : N8482G7 .
 
 
 
