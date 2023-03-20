@@ -2,8 +2,9 @@
 ENTREGA DA APS COM DEPENDÊNCIA 2ºSEMESTRE
 
 PARTICIPANTES :
-João Miguel Rosa Neto : G522CA7
-Guilherme De Mazzi : G423666
+João Miguel Rosa Neto : G522CA7 /
+Guilherme De Mazzi : G423666 /
+
 
 
 **Flappy Bird:**
