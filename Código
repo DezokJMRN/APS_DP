@@ -1,0 +1,98 @@
+AQUI ESTÁ O CÓDIGO COMPLETO DO JOGO FLYBIRD EM PYTHON:
+
+import pygame
+import random
+import sys
+
+# Inicializa o pygame
+pygame.init()
+
+# Define o tamanho da tela
+screen_width, screen_height = 288, 512
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+# Carrega a imagem do fundo
+background_image = pygame.image.load("background.png")
+
+# Carrega a imagem do pássaro
+bird_image = pygame.image.load("bird.png")
+
+# Define a posição inicial do pássaro
+bird_x = 50
+bird_y = 250
+
+# Define a velocidade do pássaro
+bird_velocity = 0
+
+# Define a gravidade
+gravity = 0.25
+
+# Define a posição inicial dos canos
+pipe_x = 300
+pipe_y = random.randint(200, 400)
+
+# Define a velocidade dos canos
+pipe_velocity = -3
+
+# Define o espaço entre os canos
+pipe_gap = 150
+
+# Define o tamanho dos canos
+pipe_width = 50
+pipe_height = screen_height - pipe_y
+
+# Define a pontuação
+score = 0
+
+# Define a fonte para exibir a pontuação
+font = pygame.font.Font(None, 36)
+
+# Define a cor branca
+white = (255, 255, 255)
+
+# Define o loop principal do jogo
+while True:
+    # Verifica os eventos do mouse
+    for event in pygame.event.get():
+        # Se o usuário clicar no X da janela, fecha o jogo
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        # Se o usuário apertar a barra de espaço, dá uma impulsão no pássaro
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                bird_velocity = -3
+                
+    # Desenha o fundo e o pássaro na tela
+    screen.blit(background_image, (0, 0))
+    screen.blit(bird_image, (bird_x, bird_y))
+
+    # Desenha os canos na tela
+    pygame.draw.rect(screen, white, (pipe_x, 0, pipe_width, pipe_y - pipe_gap))
+    pygame.draw.rect(screen, white, (pipe_x, pipe_y, pipe_width, pipe_height - pipe_y + pipe_gap))
+
+    # Exibe a pontuação na tela
+    score_text = font.render("Score: " + str(score), True, white)
+    screen.blit(score_text, (10, 10))
+
+    # Atualiza a posição do pássaro com base na gravidade e na velocidade atual
+    bird_velocity += gravity
+    bird_y += bird_velocity
+
+    # Atualiza a posição dos canos com base na velocidade
+    pipe_x += pipe_velocity
+
+    # Se o cano sair da tela, redefine a sua posição
+    if pipe_x < -pipe_width:
+        pipe_x = screen_width
+        pipe_y = random.randint(200, 400)
+        pipe_height = screen_height - pipe_y
+
+    # Atualiza a pontuação
+    score += 1
+
+    # Atualiza a tela
+    pygame.display.update()
+
+    # Controla a taxa de atualização da tela para 60 FPS
+    pygame.time.Clock().tick(60)
